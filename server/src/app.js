@@ -56,7 +56,7 @@ const PORT = process.env.PORT || 3001;
 sequelize.authenticate()
     .then(() => {
         console.log('✅ Conexión a BD exitosa');
-        app.listen(PORT, () => console.log(`🔧 Servidor Ferretería corriendo en http://localhost:${PORT}`));
+        app.listen(PORT, '0.0.0.0', () => console.log(`🔧 Servidor Ferretería corriendo en http://localhost:${PORT}`));
     })
     .catch(err => {
         console.error('❌ Error de conexión a BD:', err.message);
