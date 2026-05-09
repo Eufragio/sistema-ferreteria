@@ -71,7 +71,7 @@ export default function CuentasCobrar() {
                         <div style={{ padding: '0 12px', borderLeft: '2px solid var(--accent-color)' }}>
                             <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>Cobranza Pendiente</div>
                             <strong style={{ color: 'var(--danger-color)' }}>
-                                S/ {cuentas.filter(c => c.estado === 'Pendiente').reduce((a, b) => a + parseFloat(b.saldo_pendiente), 0).toFixed(2)}
+                                $ {cuentas.filter(c => c.estado === 'Pendiente').reduce((a, b) => a + parseFloat(b.saldo_pendiente), 0).toFixed(2)}
                             </strong>
                         </div>
                     </div>
@@ -100,9 +100,9 @@ export default function CuentasCobrar() {
                                         <div style={{ fontWeight: 500 }}>{c.cliente?.nombre}</div>
                                         <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>DOC: {c.cliente?.numero_documento}</div>
                                     </td>
-                                    <td>S/ {parseFloat(c.monto_total).toFixed(2)}</td>
-                                    <td className="text-success">S/ {parseFloat(c.saldo_pagado).toFixed(2)}</td>
-                                    <td className="text-danger" style={{ fontWeight: 700 }}>S/ {parseFloat(c.saldo_pendiente).toFixed(2)}</td>
+                                    <td>$ {parseFloat(c.monto_total).toFixed(2)}</td>
+                                    <td className="text-success">$ {parseFloat(c.saldo_pagado).toFixed(2)}</td>
+                                    <td className="text-danger" style={{ fontWeight: 700 }}>$ {parseFloat(c.saldo_pendiente).toFixed(2)}</td>
                                     <td><span className={`badge ${estadoBadge[c.estado]}`}>{c.estado}</span></td>
                                     <td style={{ display: 'flex', gap: 6 }}>
                                         <button className="btn-icon view" onClick={() => verDetalle(c.id)} title="Ver Historial de Abonos"><Eye size={14} /></button>
@@ -131,10 +131,10 @@ export default function CuentasCobrar() {
                                 <div style={{ background: 'var(--bg-secondary)', padding: '12px', borderRadius: 8, marginBottom: 16 }}>
                                     <div style={{ fontSize: 13, color: 'var(--text-secondary)' }}>Cliente: {abonoModal.cliente?.nombre}</div>
                                     <div style={{ fontSize: 13, color: 'var(--text-secondary)' }}>Venta: {abonoModal.venta?.numero_comprobante}</div>
-                                    <div style={{ fontSize: 16, marginTop: 4 }}>Saldo Restante: <strong className="text-danger">S/ {parseFloat(abonoModal.saldo_pendiente).toFixed(2)}</strong></div>
+                                    <div style={{ fontSize: 16, marginTop: 4 }}>Saldo Restante: <strong className="text-danger">$ {parseFloat(abonoModal.saldo_pendiente).toFixed(2)}</strong></div>
                                 </div>
                                 <div className="form-group">
-                                    <label>Monto a Abonar (S/)</label>
+                                    <label>Monto a Abonar ($)</label>
                                     <input type="number" step="0.01" max={abonoModal.saldo_pendiente} required className="form-control" value={formAbono.monto} onChange={e => setFormAbono({ ...formAbono, monto: e.target.value })} autoFocus />
                                 </div>
                                 <div className="form-group">
@@ -171,7 +171,7 @@ export default function CuentasCobrar() {
                         <div className="modal-body">
                             <div className="form-row" style={{ marginBottom: 16 }}>
                                 <div><div style={{ fontSize: 12, color: 'var(--text-muted)' }}>Deudor</div><div style={{ fontWeight: 600 }}>{detalle.cliente?.nombre}</div></div>
-                                <div><div style={{ fontSize: 12, color: 'var(--text-muted)' }}>Monto Total</div><div style={{ fontWeight: 600 }}>S/ {parseFloat(detalle.monto_total).toFixed(2)}</div></div>
+                                <div><div style={{ fontSize: 12, color: 'var(--text-muted)' }}>Monto Total</div><div style={{ fontWeight: 600 }}>$ {parseFloat(detalle.monto_total).toFixed(2)}</div></div>
                                 <div><div style={{ fontSize: 12, color: 'var(--text-muted)' }}>Estado</div><div><span className={`badge ${estadoBadge[detalle.estado]}`}>{detalle.estado}</span></div></div>
                                 <div>
                                     <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>Progreso de Pago</div>
@@ -196,7 +196,7 @@ export default function CuentasCobrar() {
                                                     <td>{ab.cajero?.nombre}</td>
                                                     <td>{ab.metodo_pago}</td>
                                                     <td>{ab.referencia || '-'}</td>
-                                                    <td className="text-success" style={{ fontWeight: 600 }}>+ S/ {parseFloat(ab.monto).toFixed(2)}</td>
+                                                    <td className="text-success" style={{ fontWeight: 600 }}>+ $ {parseFloat(ab.monto).toFixed(2)}</td>
                                                 </tr>
                                             ))}
                                         </tbody>

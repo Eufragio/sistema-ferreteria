@@ -65,7 +65,7 @@ const registrarAbono = async (req, res) => {
         if (cuenta.estado === 'Pagado') throw new Error('Esta cuenta ya ha sido cancelada al proveedor en su totalidad.');
 
         const saldoPendienteOriginal = parseFloat(cuenta.saldo_pendiente);
-        if (montoAbono > saldoPendienteOriginal) throw new Error(`El abono (S/ ${montoAbono}) supera la deuda por pagar (S/ ${saldoPendienteOriginal})`);
+        if (montoAbono > saldoPendienteOriginal) throw new Error(`El abono ($ ${montoAbono}) supera la deuda por pagar ($ ${saldoPendienteOriginal})`);
 
         // Registrar el abono (Historial técnico)
         const abono = await AbonoPagar.create({

@@ -113,7 +113,7 @@ export default function POS() {
         try {
             const items = cart.map(i => ({ producto_id: i.id, cantidad: i.cantidad, precio_unitario: i.precio, descuento: 0 }));
             const { data } = await api.post('/ventas', { ...form, items, descuento });
-            toast.success(`✅ Venta ${data.venta.numero_comprobante} registrada — Total: S/ ${total.toFixed(2)}`);
+            toast.success(`✅ Venta ${data.venta.numero_comprobante} registrada — Total: $ ${total.toFixed(2)}`);
 
             // Construir venta a imprimir
             const clienteSelect = clientes.find(c => String(c.id) === String(form.cliente_id));
@@ -207,7 +207,7 @@ export default function POS() {
                                             : <Package size={32} style={{ color: 'var(--accent-light)' }} />}
                                     </div>
                                     <div className="product-card-name">{p.nombre}</div>
-                                    <div className="product-card-price">S/ {parseFloat(p.precio_venta).toFixed(2)}</div>
+                                    <div className="product-card-price">$ {parseFloat(p.precio_venta).toFixed(2)}</div>
                                     <div className={`product-card-stock ${p.stock <= p.stock_minimo ? 'low' : ''}`}>Stock: {p.stock} {p.unidad}</div>
                                 </div>
                             ))}
@@ -228,7 +228,7 @@ export default function POS() {
                         <div key={item.id} className="cart-item">
                             <div style={{ flex: 1, minWidth: 0 }}>
                                 <div className="cart-item-name" style={{ fontSize: 12, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{item.nombre}</div>
-                                <div className="cart-item-price">S/ {item.precio.toFixed(2)} × {item.cantidad} = <strong style={{ color: 'var(--accent-light)' }}>S/ {(item.precio * item.cantidad).toFixed(2)}</strong></div>
+                                <div className="cart-item-price">$ {item.precio.toFixed(2)} × {item.cantidad} = <strong style={{ color: 'var(--accent-light)' }}>$ {(item.precio * item.cantidad).toFixed(2)}</strong></div>
                             </div>
                             <div className="quantity-ctrl">
                                 <button onClick={() => updateQty(item.id, -1)}><Minus size={12} /></button>
@@ -260,16 +260,16 @@ export default function POS() {
                             <option value="Crédito">Al Crédito (Fiado)</option>
                         </select>
                     </div>
-                    <input className="form-control" type="number" placeholder="Descuento (S/)" value={form.descuento} onChange={e => setForm({ ...form, descuento: e.target.value })} style={{ marginBottom: 6 }} />
-                    <input className="form-control" type="number" placeholder="Monto recibido (S/)" value={form.monto_recibido} onChange={e => setForm({ ...form, monto_recibido: e.target.value })} style={{ marginBottom: 10 }} disabled={form.tipo_pago === 'Crédito'} />
+                    <input className="form-control" type="number" placeholder="Descuento ($)" value={form.descuento} onChange={e => setForm({ ...form, descuento: e.target.value })} style={{ marginBottom: 6 }} />
+                    <input className="form-control" type="number" placeholder="Monto recibido ($)" value={form.monto_recibido} onChange={e => setForm({ ...form, monto_recibido: e.target.value })} style={{ marginBottom: 10 }} disabled={form.tipo_pago === 'Crédito'} />
 
                     <div className="pos-totals" style={{ marginBottom: 12 }}>
-                        <div className="pos-totals-row"><span>Subtotal:</span><span>S/ {subtotal.toFixed(2)}</span></div>
-                        {descuento > 0 && <div className="pos-totals-row"><span>Descuento:</span><span className="text-danger">- S/ {descuento.toFixed(2)}</span></div>}
+                        <div className="pos-totals-row"><span>Subtotal:</span><span>$ {subtotal.toFixed(2)}</span></div>
+                        {descuento > 0 && <div className="pos-totals-row"><span>Descuento:</span><span className="text-danger">- $ {descuento.toFixed(2)}</span></div>}
                         {form.tipo_pago === 'Crédito' && <div className="pos-totals-row"><span className="badge badge-warning">PAGO AL CRÉDITO</span></div>}
-                        <div className="pos-totals-row"><span>IGV (18%):</span><span>S/ {igv.toFixed(2)}</span></div>
-                        <div className="pos-totals-row total"><span>TOTAL:</span><span style={{ color: 'var(--accent-light)' }}>S/ {total.toFixed(2)}</span></div>
-                        {form.monto_recibido && form.tipo_pago !== 'Crédito' && <div className="pos-totals-row"><span>Vuelto:</span><span className="text-success">S/ {Math.max(vuelto, 0).toFixed(2)}</span></div>}
+                        <div className="pos-totals-row"><span>IGV (18%):</span><span>$ {igv.toFixed(2)}</span></div>
+                        <div className="pos-totals-row total"><span>TOTAL:</span><span style={{ color: 'var(--accent-light)' }}>$ {total.toFixed(2)}</span></div>
+                        {form.monto_recibido && form.tipo_pago !== 'Crédito' && <div className="pos-totals-row"><span>Vuelto:</span><span className="text-success">$ {Math.max(vuelto, 0).toFixed(2)}</span></div>}
                     </div>
 
                     <div style={{ display: 'flex', gap: 6 }}>
@@ -292,7 +292,7 @@ export default function POS() {
                         </div>
                         <h2 style={{ fontSize: 20, marginBottom: 8 }}>¡Venta Completada!</h2>
                         <p style={{ color: 'var(--text-secondary)', marginBottom: 24 }}>
-                            El comprobante <strong>{ventaRealizada.numero_comprobante}</strong> se ha registrado correctamente por un total de <strong>S/ {Number(ventaRealizada.total).toFixed(2)}</strong>.
+                            El comprobante <strong>{ventaRealizada.numero_comprobante}</strong> se ha registrado correctamente por un total de <strong>$ {Number(ventaRealizada.total).toFixed(2)}</strong>.
                         </p>
 
                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>

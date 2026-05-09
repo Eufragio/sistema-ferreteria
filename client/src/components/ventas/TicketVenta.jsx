@@ -73,21 +73,21 @@ const TicketVenta = forwardRef(({ venta, empresa }, ref) => {
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', fontSize: '13px' }}>
                 <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
                     <span>OP. GRAVADA:</span>
-                    <span>S/ {fMoneda(venta.subtotal)}</span>
+                    <span>$ {fMoneda(venta.subtotal)}</span>
                 </div>
                 {venta.descuento > 0 && (
                     <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
                         <span>DESCUENTO:</span>
-                        <span>- S/ {fMoneda(venta.descuento)}</span>
+                        <span>- $ {fMoneda(venta.descuento)}</span>
                     </div>
                 )}
                 <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
                     <span>IGV (18%):</span>
-                    <span>S/ {fMoneda(venta.igv)}</span>
+                    <span>$ {fMoneda(venta.igv)}</span>
                 </div>
                 <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '15px', marginTop: '5px' }}>
                     <span>TOTAL:</span>
-                    <span>S/ {fMoneda(venta.total)}</span>
+                    <span>$ {fMoneda(venta.total)}</span>
                 </div>
             </div>
 
@@ -98,8 +98,8 @@ const TicketVenta = forwardRef(({ venta, empresa }, ref) => {
                 <div><strong>TIPO PAGO:</strong> {venta.tipo_pago || 'Efectivo'}</div>
                 {(venta.monto_recibido > 0) && (
                     <>
-                        <div><strong>RECIBIDO:</strong> S/ {fMoneda(venta.monto_recibido)}</div>
-                        <div><strong>VUELTO:</strong> S/ {fMoneda(venta.vuelto)}</div>
+                        <div><strong>RECIBIDO:</strong> $ {fMoneda(venta.monto_recibido)}</div>
+                        <div><strong>VUELTO:</strong> $ {fMoneda(venta.vuelto)}</div>
                     </>
                 )}
             </div>

@@ -66,9 +66,9 @@ const exportarExcel = async (req, res) => {
             { header: 'N° Comprobante', key: 'numero', width: 18 },
             { header: 'Cliente', key: 'cliente', width: 30 },
             { header: 'Tipo Pago', key: 'pago', width: 15 },
-            { header: 'Subtotal', key: 'subtotal', width: 12, style: { numFmt: '"S/"#,##0.00' } },
-            { header: 'IGV', key: 'igv', width: 12, style: { numFmt: '"S/"#,##0.00' } },
-            { header: 'Total Real', key: 'total', width: 14, style: { numFmt: '"S/"#,##0.00' } },
+            { header: 'Subtotal', key: 'subtotal', width: 12, style: { numFmt: '"$"#,##0.00' } },
+            { header: 'IGV', key: 'igv', width: 12, style: { numFmt: '"$"#,##0.00' } },
+            { header: 'Total Real', key: 'total', width: 14, style: { numFmt: '"$"#,##0.00' } },
             { header: 'Estado', key: 'estado', width: 12 }
         ];
         sheetVentas.getRow(1).eachCell(c => { Object.assign(c, estilosCabecera); });
@@ -98,7 +98,7 @@ const exportarExcel = async (req, res) => {
             { header: 'O/C N°', key: 'numero', width: 18 },
             { header: 'Proveedor', key: 'proveedor', width: 30 },
             { header: 'Tipo Pago', key: 'pago', width: 15 },
-            { header: 'Total Emisión', key: 'total', width: 14, style: { numFmt: '"S/"#,##0.00' } },
+            { header: 'Total Emisión', key: 'total', width: 14, style: { numFmt: '"$"#,##0.00' } },
             { header: 'Estado', key: 'estado', width: 14 }
         ];
         sheetCompras.getRow(1).eachCell(c => { Object.assign(c, estilosCabecera); c.fill.fgColor.argb = 'FFDC2626'; }); // Rojo para egresos
@@ -124,9 +124,9 @@ const exportarExcel = async (req, res) => {
         sheetCxc.columns = [
             { header: 'Cliente Deudor', key: 'cliente', width: 32 },
             { header: 'Venta Vinculada', key: 'venta', width: 18 },
-            { header: 'Total Facturado', key: 'total', width: 15, style: { numFmt: '"S/"#,##0.00' } },
-            { header: 'Abonado', key: 'pagado', width: 15, style: { numFmt: '"S/"#,##0.00' } },
-            { header: 'Riesgo / Deuda Actual', key: 'deuda', width: 18, style: { numFmt: '"S/"#,##0.00' } },
+            { header: 'Total Facturado', key: 'total', width: 15, style: { numFmt: '"$"#,##0.00' } },
+            { header: 'Abonado', key: 'pagado', width: 15, style: { numFmt: '"$"#,##0.00' } },
+            { header: 'Riesgo / Deuda Actual', key: 'deuda', width: 18, style: { numFmt: '"$"#,##0.00' } },
             { header: 'Estado', key: 'estado', width: 14 }
         ];
         sheetCxc.getRow(1).eachCell(c => { Object.assign(c, estilosCabecera); c.fill.fgColor.argb = 'FFD97706'; }); // Naranja (Activos Pendientes)
@@ -151,9 +151,9 @@ const exportarExcel = async (req, res) => {
         sheetCxp.columns = [
             { header: 'Proveedor (Acreedor)', key: 'proveedor', width: 32 },
             { header: 'O/C Vinculada', key: 'compra', width: 18 },
-            { header: 'Total O/C', key: 'total', width: 15, style: { numFmt: '"S/"#,##0.00' } },
-            { header: 'Abonado', key: 'pagado', width: 15, style: { numFmt: '"S/"#,##0.00' } },
-            { header: 'Deuda por Pagar', key: 'deuda', width: 18, style: { numFmt: '"S/"#,##0.00' } },
+            { header: 'Total O/C', key: 'total', width: 15, style: { numFmt: '"$"#,##0.00' } },
+            { header: 'Abonado', key: 'pagado', width: 15, style: { numFmt: '"$"#,##0.00' } },
+            { header: 'Deuda por Pagar', key: 'deuda', width: 18, style: { numFmt: '"$"#,##0.00' } },
             { header: 'Estado', key: 'estado', width: 14 }
         ];
         sheetCxp.getRow(1).eachCell(c => { Object.assign(c, estilosCabecera); c.fill.fgColor.argb = 'FF7C3AED'; }); // Morado (Pasivos)
@@ -210,13 +210,13 @@ const exportarPDF = async (req, res) => {
         ventas.slice(0, 50).forEach(v => {
             let xRow = 40;
             const y = doc.y;
-            const row = [v.numero_comprobante, v.tipo_comprobante, `S/ ${parseFloat(v.total).toFixed(2)}`, v.tipo_pago, new Date(v.created_at).toLocaleDateString('es-PE')];
+            const row = [v.numero_comprobante, v.tipo_comprobante, `$ ${parseFloat(v.total).toFixed(2)}`, v.tipo_pago, new Date(v.created_at).toLocaleDateString('es-PE')];
             row.forEach((cell, i) => { doc.text(cell, xRow, y, { width: colWidths[i] }); xRow += colWidths[i]; });
             doc.moveDown(0.4);
         });
 
         doc.moveDown(1);
-        doc.font('Helvetica-Bold').fontSize(12).text(`TOTAL: S/ ${total.toFixed(2)}`, { align: 'right' });
+        doc.font('Helvetica-Bold').fontSize(12).text(`TOTAL: $ ${total.toFixed(2)}`, { align: 'right' });
         doc.end();
     } catch (err) {
         res.status(500).json({ ok: false, msg: 'Error al generar PDF', error: err.message });
@@ -235,8 +235,8 @@ const exportarInventarioExcel = async (req, res) => {
             { header: 'Producto', key: 'nombre', width: 35 },
             { header: 'Categoría', key: 'categoria', width: 20 },
             { header: 'Stock Físico', key: 'stock', width: 14, style: { alignment: { horizontal: 'center' } } },
-            { header: 'Precio Unidad', key: 'precio', width: 15, style: { numFmt: '"S/"#,##0.00' } },
-            { header: 'Valorización Total', key: 'valor', width: 18, style: { numFmt: '"S/"#,##0.00' } }
+            { header: 'Precio Unidad', key: 'precio', width: 15, style: { numFmt: '"$"#,##0.00' } },
+            { header: 'Valorización Total', key: 'valor', width: 18, style: { numFmt: '"$"#,##0.00' } }
         ];
 
         sheet.getRow(1).eachCell(c => {
@@ -320,7 +320,7 @@ const exportarInventarioPDF = async (req, res) => {
         doc.moveDown(1);
         doc.moveTo(40, doc.y).lineTo(550, doc.y).stroke();
         doc.moveDown(0.5);
-        doc.font('Helvetica-Bold').fontSize(12).text(`VALOR TOTAL ALMACÉN: S/ ${capitalTotal.toFixed(2)}`, { align: 'right' });
+        doc.font('Helvetica-Bold').fontSize(12).text(`VALOR TOTAL ALMACÉN: $ ${capitalTotal.toFixed(2)}`, { align: 'right' });
 
         doc.end();
     } catch (error) {

@@ -28,7 +28,7 @@ services:
       DB_USER: ${DB_USER:-ferreteria}
       DB_PASSWORD: ${DB_PASSWORD}
       JWT_SECRET: ${JWT_SECRET}
-      PORT: 3001
+      PORT: 3002
     volumes:
       - uploads:/app/uploads
     depends_on:

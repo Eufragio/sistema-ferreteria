@@ -65,7 +65,7 @@ const registrarAbono = async (req, res) => {
         if (cuenta.estado === 'Pagado') throw new Error('Esta cuenta ya está completamente pagada');
 
         const saldoPendienteOriginal = parseFloat(cuenta.saldo_pendiente);
-        if (montoAbono > saldoPendienteOriginal) throw new Error(`El abono (S/ ${montoAbono}) supera la deuda pendiente (S/ ${saldoPendienteOriginal})`);
+        if (montoAbono > saldoPendienteOriginal) throw new Error(`El abono ($ ${montoAbono}) supera la deuda pendiente ($ ${saldoPendienteOriginal})`);
 
         // Registrar el abono
         const abono = await AbonoCuenta.create({

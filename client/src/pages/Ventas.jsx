@@ -108,7 +108,7 @@ export default function Ventas() {
             </div>
 
             <div className="grid grid-3 mb-4" style={{ marginBottom: 16 }}>
-                <div className="stat-card"><div className="label">Total Ventas</div><div className="value">S/ {total.toFixed(2)}</div></div>
+                <div className="stat-card"><div className="label">Total Ventas</div><div className="value">$ {total.toFixed(2)}</div></div>
                 <div className="stat-card"><div className="label">N° Ventas</div><div className="value">{ventas.filter(v => v.estado === 'Completada').length}</div></div>
                 <div className="stat-card"><div className="label">Anuladas</div><div className="value">{ventas.filter(v => v.estado === 'Anulada').length}</div></div>
             </div>
@@ -123,7 +123,7 @@ export default function Ventas() {
                                     <td style={{ color: 'var(--accent-light)', fontFamily: 'monospace' }}>{v.numero_comprobante}</td>
                                     <td>{v.tipo_comprobante}</td>
                                     <td>{v.cliente?.nombre || 'Cliente General'}</td>
-                                    <td><strong>S/ {parseFloat(v.total).toFixed(2)}</strong></td>
+                                    <td><strong>$ {parseFloat(v.total).toFixed(2)}</strong></td>
                                     <td>{v.tipo_pago}</td>
                                     <td><span className={`badge ${estadoBadge[v.estado]}`}>{v.estado}</span></td>
                                     <td style={{ fontSize: 12, color: 'var(--text-secondary)' }}>{new Date(v.created_at).toLocaleString('es-PE')}</td>
@@ -159,16 +159,16 @@ export default function Ventas() {
                                             <tr key={d.id}>
                                                 <td>{d.producto?.nombre}</td>
                                                 <td>{d.cantidad} {d.producto?.unidad}</td>
-                                                <td>S/ {parseFloat(d.precio_unitario).toFixed(2)}</td>
-                                                <td><strong>S/ {parseFloat(d.subtotal).toFixed(2)}</strong></td>
+                                                <td>$ {parseFloat(d.precio_unitario).toFixed(2)}</td>
+                                                <td><strong>$ {parseFloat(d.subtotal).toFixed(2)}</strong></td>
                                             </tr>
                                         ))}
                                     </tbody>
                                 </table>
                             </div>
                             <div style={{ textAlign: 'right', marginTop: 12 }}>
-                                <div style={{ fontSize: 12, color: 'var(--text-secondary)' }}>IGV (18%): S/ {parseFloat(detalle.igv).toFixed(2)}</div>
-                                <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--accent-light)' }}>TOTAL: S/ {parseFloat(detalle.total).toFixed(2)}</div>
+                                <div style={{ fontSize: 12, color: 'var(--text-secondary)' }}>IGV (18%): $ {parseFloat(detalle.igv).toFixed(2)}</div>
+                                <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--accent-light)' }}>TOTAL: $ {parseFloat(detalle.total).toFixed(2)}</div>
                             </div>
 
                             <div style={{ marginTop: 24, display: 'flex', justifyContent: 'space-between' }}>
@@ -209,7 +209,7 @@ export default function Ventas() {
                                             <tr key={d.id}>
                                                 <td>{d.producto?.nombre}</td>
                                                 <td>{d.cantidad}</td>
-                                                <td>S/ {parseFloat(d.precio_unitario).toFixed(2)}</td>
+                                                <td>$ {parseFloat(d.precio_unitario).toFixed(2)}</td>
                                                 <td style={{ width: 120 }}>
                                                     <input
                                                         type="number"

@@ -78,21 +78,21 @@ const TicketCotizacion = forwardRef(({ cotizacion, empresa }, ref) => {
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', fontSize: '13px' }}>
                 <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
                     <span>SUBTOTAL:</span>
-                    <span>S/ {fMoneda(cotizacion.subtotal)}</span>
+                    <span>$ {fMoneda(cotizacion.subtotal)}</span>
                 </div>
                 {cotizacion.descuento > 0 && (
                     <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
                         <span>DESCUENTO:</span>
-                        <span>- S/ {fMoneda(cotizacion.descuento)}</span>
+                        <span>- $ {fMoneda(cotizacion.descuento)}</span>
                     </div>
                 )}
                 <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
                     <span>IGV (18%):</span>
-                    <span>S/ {fMoneda(cotizacion.igv)}</span>
+                    <span>$ {fMoneda(cotizacion.igv)}</span>
                 </div>
                 <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '15px', marginTop: '5px' }}>
                     <span>TOTAL:</span>
-                    <span>S/ {fMoneda(cotizacion.total)}</span>
+                    <span>$ {fMoneda(cotizacion.total)}</span>
                 </div>
             </div>
 

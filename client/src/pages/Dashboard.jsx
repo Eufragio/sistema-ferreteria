@@ -124,7 +124,7 @@ export default function Dashboard() {
     const lineData = {
         labels: dashData?.tendenciaVentas?.fechas.map(f => new Date(f).toLocaleDateString('es-PE', { day: 'numeric', month: 'short', timeZone: 'UTC' })) || ['L', 'M', 'X', 'J', 'V', 'S', 'D'],
         datasets: [{
-            label: 'Ventas S/',
+            label: 'Ventas $',
             data: dashData?.tendenciaVentas?.totales || [0, 0, 0, 0, 0, 0, 0],
             borderColor: '#f59e0b',
             backgroundColor: 'rgba(245,158,11,0.15)',
@@ -164,7 +164,7 @@ export default function Dashboard() {
     };
     const miniBarOpts = {
         responsive: true, maintainAspectRatio: false,
-        plugins: { legend: { display: false }, tooltip: { callbacks: { label: function (c) { return 'S/ ' + c.raw.toFixed(2); } } } },
+        plugins: { legend: { display: false }, tooltip: { callbacks: { label: function (c) { return '$ ' + c.raw.toFixed(2); } } } },
         scales: {
             x: { ticks: { color: '#9ca3af', font: { size: 8 } }, grid: { display: false } },
             y: { ticks: { color: '#9ca3af', font: { size: 8 } }, grid: { color: 'rgba(0,0,0,0.04)' } }
@@ -332,7 +332,7 @@ export default function Dashboard() {
                                     </div>
                                 </div>
                                 <span style={{ fontSize: 16, fontWeight: 800, color: '#1e1b4b', flexShrink: 0 }}>
-                                    S/ {parseFloat(v.total).toFixed(1)}
+                                    $ {parseFloat(v.total).toFixed(1)}
                                 </span>
                             </div>
                         );
@@ -345,7 +345,7 @@ export default function Dashboard() {
 
                 {/* [1] Barras verdes verticales */}
                 <div className="card">
-                    <div className="card-title" style={{ marginBottom: 6 }}>Ventas S/</div>
+                    <div className="card-title" style={{ marginBottom: 6 }}>Ventas $</div>
                     <div style={{ height: 140 }}>
                         <Bar data={barGreenData} options={miniBarOpts} />
                     </div>
@@ -353,7 +353,7 @@ export default function Dashboard() {
 
                 {/* [2] Barras amarillas verticales */}
                 <div className="card">
-                    <div className="card-title" style={{ marginBottom: 6 }}>Compras S/</div>
+                    <div className="card-title" style={{ marginBottom: 6 }}>Compras $</div>
                     <div style={{ height: 140 }}>
                         <Bar data={barYellowData} options={miniBarOpts} />
                     </div>
@@ -414,7 +414,7 @@ export default function Dashboard() {
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <div style={{ textAlign: 'center' }}>
                                     <div style={{ fontSize: 18, fontWeight: 800, color: '#7c3aed' }}>
-                                        S/{Math.round(stats.totalVentas).toLocaleString()}
+                                        ${Math.round(stats.totalVentas).toLocaleString()}
                                     </div>
                                     <div style={{ fontSize: 10, color: '#9ca3af' }}>Ventas hoy</div>
                                 </div>

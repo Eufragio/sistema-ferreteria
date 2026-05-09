@@ -53,7 +53,7 @@ export default function Devoluciones() {
                                     <td>{d.venta?.numero_comprobante}</td>
                                     <td>{d.venta?.cliente?.nombre || 'Cliente General'}</td>
                                     <td>{d.usuario?.nombre}</td>
-                                    <td><strong style={{ color: 'var(--danger-color)' }}>S/ {parseFloat(d.total_reembolso).toFixed(2)}</strong></td>
+                                    <td><strong style={{ color: 'var(--danger-color)' }}>$ {parseFloat(d.total_reembolso).toFixed(2)}</strong></td>
                                     <td>
                                         <button className="btn-icon" onClick={() => verDetalle(d.id)} title="Ver Detalle"><Eye size={16} /></button>
                                         <button className="btn-icon text-primary" onClick={() => window.print()} title="Imprimir Nota"><FileText size={16} /></button>
@@ -103,15 +103,15 @@ export default function Devoluciones() {
                                                 <td className="text-muted">{d.producto?.codigo || '—'}</td>
                                                 <td>{d.producto?.nombre}</td>
                                                 <td><strong className="text-danger">-{d.cantidad}</strong></td>
-                                                <td>S/ {parseFloat(d.precio_unitario).toFixed(2)}</td>
-                                                <td><strong>S/ {parseFloat(d.subtotal).toFixed(2)}</strong></td>
+                                                <td>$ {parseFloat(d.precio_unitario).toFixed(2)}</td>
+                                                <td><strong>$ {parseFloat(d.subtotal).toFixed(2)}</strong></td>
                                             </tr>
                                         ))}
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <td colSpan={4} style={{ textAlign: 'right', fontWeight: 'bold' }}>TOTAL REEMBOLSADO:</td>
-                                            <td style={{ fontWeight: 'bold', color: 'var(--danger-color)' }}>S/ {parseFloat(detalle.total_reembolso).toFixed(2)}</td>
+                                            <td style={{ fontWeight: 'bold', color: 'var(--danger-color)' }}>$ {parseFloat(detalle.total_reembolso).toFixed(2)}</td>
                                         </tr>
                                     </tfoot>
                                 </table>

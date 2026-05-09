@@ -132,11 +132,11 @@ export default function Reportes() {
                     <div className="grid grid-3">
                         <div className="gradient-card purple">
                             <div style={{ fontSize: 12, opacity: 0.8, marginBottom: 8 }}>Ventas Brutas (+IGV)</div>
-                            <div style={{ fontSize: 32, fontWeight: 800 }}>S/ {parseFloat(resumen.total_ventas || 0).toFixed(2)}</div>
+                            <div style={{ fontSize: 32, fontWeight: 800 }}>$ {parseFloat(resumen.total_ventas || 0).toFixed(2)}</div>
                         </div>
                         <div className="gradient-card pink">
                             <div style={{ fontSize: 12, opacity: 0.8, marginBottom: 8 }}>Impuesto de Ingresos Identificado</div>
-                            <div style={{ fontSize: 32, fontWeight: 800 }}>S/ {parseFloat(resumen.total_igv || 0).toFixed(2)}</div>
+                            <div style={{ fontSize: 32, fontWeight: 800 }}>$ {parseFloat(resumen.total_igv || 0).toFixed(2)}</div>
                         </div>
                         <div className="stat-card">
                             <div className="label">Volumen Operativo</div>

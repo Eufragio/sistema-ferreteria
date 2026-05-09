@@ -63,7 +63,7 @@ export default function Compras() {
                                 <tr key={c.id}>
                                     <td style={{ color: 'var(--accent-light)', fontFamily: 'monospace' }}>{c.numero_orden}</td>
                                     <td>{c.proveedor?.empresa}</td>
-                                    <td><strong>S/ {parseFloat(c.total).toFixed(2)}</strong></td>
+                                    <td><strong>$ {parseFloat(c.total).toFixed(2)}</strong></td>
                                     <td><span className={`badge ${c.tipo_pago === 'Crédito' ? 'badge-warning' : 'badge-info'}`}>{c.tipo_pago || 'Efectivo'}</span></td>
                                     <td><span className={`badge ${estadoBadge[c.estado]}`}>{c.estado}</span></td>
                                     <td style={{ fontSize: 12, color: 'var(--text-secondary)' }}>{new Date(c.created_at).toLocaleDateString('es-PE')}</td>
@@ -122,7 +122,7 @@ export default function Compras() {
                                     </div>
                                 ))}
                             </div>
-                            <div style={{ textAlign: 'right', fontSize: 16, fontWeight: 700, color: 'var(--accent-light)' }}>Total: S/ {totales.toFixed(2)}</div>
+                            <div style={{ textAlign: 'right', fontSize: 16, fontWeight: 700, color: 'var(--accent-light)' }}>Total: $ {totales.toFixed(2)}</div>
                             <div className="form-group" style={{ marginTop: 10 }}><label>Observaciones</label><textarea className="form-control" rows={2} value={form.observaciones} onChange={e => setForm({ ...form, observaciones: e.target.value })} /></div>
                         </div>
                         <div className="modal-footer">
@@ -143,11 +143,11 @@ export default function Compras() {
                                 <thead><tr><th>Producto</th><th>Cantidad</th><th>Precio Un.</th><th>Subtotal</th></tr></thead>
                                 <tbody>
                                     {detalle.detalles?.map(d => (
-                                        <tr key={d.id}><td>{d.producto?.nombre}</td><td>{d.cantidad}</td><td>S/ {parseFloat(d.precio_unitario).toFixed(2)}</td><td>S/ {parseFloat(d.subtotal).toFixed(2)}</td></tr>
+                                        <tr key={d.id}><td>{d.producto?.nombre}</td><td>{d.cantidad}</td><td>$ {parseFloat(d.precio_unitario).toFixed(2)}</td><td>$ {parseFloat(d.subtotal).toFixed(2)}</td></tr>
                                     ))}
                                 </tbody>
                             </table></div>
-                            <div style={{ textAlign: 'right', marginTop: 12, fontSize: 18, fontWeight: 800 }}>Total: S/ {parseFloat(detalle.total).toFixed(2)}</div>
+                            <div style={{ textAlign: 'right', marginTop: 12, fontSize: 18, fontWeight: 800 }}>Total: $ {parseFloat(detalle.total).toFixed(2)}</div>
                         </div>
                     </div>
                 </div>

@@ -84,8 +84,8 @@ export default function Productos() {
                                     <td style={{ color: 'var(--text-muted)', fontSize: 12 }}>{p.codigo || '—'}</td>
                                     <td><strong>{p.nombre}</strong></td>
                                     <td>{p.categoria?.nombre || '—'}</td>
-                                    <td>S/ {parseFloat(p.precio_compra).toFixed(2)}</td>
-                                    <td><strong style={{ color: 'var(--accent-light)' }}>S/ {parseFloat(p.precio_venta).toFixed(2)}</strong></td>
+                                    <td>$ {parseFloat(p.precio_compra).toFixed(2)}</td>
+                                    <td><strong style={{ color: 'var(--accent-light)' }}>$ {parseFloat(p.precio_venta).toFixed(2)}</strong></td>
                                     <td><span className={p.stock <= p.stock_minimo ? 'text-danger font-bold' : 'text-success'}>{p.stock}</span></td>
                                     <td>{p.unidad}</td>
                                     <td><span className={`badge ${p.activo ? 'badge-success' : 'badge-danger'}`}>{p.activo ? 'Activo' : 'Inactivo'}</span></td>

@@ -49,7 +49,7 @@ export default function Caja() {
                         <div>
                             <p style={{ color: 'var(--text-secondary)', fontSize: 13, marginBottom: 8 }}>Abierta por: <strong>{caja.usuario?.nombre}</strong></p>
                             <p style={{ color: 'var(--text-secondary)', fontSize: 13, marginBottom: 12 }}>Apertura: {new Date(caja.fecha_apertura).toLocaleString('es-PE')}</p>
-                            <p style={{ fontSize: 13, marginBottom: 12 }}>Monto Inicial: <strong>S/ {parseFloat(caja.monto_inicial).toFixed(2)}</strong></p>
+                            <p style={{ fontSize: 13, marginBottom: 12 }}>Monto Inicial: <strong>$ {parseFloat(caja.monto_inicial).toFixed(2)}</strong></p>
                             <div style={{ display: 'flex', gap: 8 }}>
                                 <button className="btn btn-secondary" onClick={() => setModalMov(true)}><Plus size={14} />Movimiento</button>
                                 <button className="btn btn-danger" onClick={cerrarCaja}>Cerrar Caja</button>
@@ -73,7 +73,7 @@ export default function Caja() {
                                         <tr key={m.id}>
                                             <td>{m.concepto}</td>
                                             <td><span className={`badge ${m.tipo === 'Ingreso' ? 'badge-success' : 'badge-danger'}`}>{m.tipo}</span></td>
-                                            <td className={m.tipo === 'Ingreso' ? 'text-success' : 'text-danger'}>S/ {parseFloat(m.monto).toFixed(2)}</td>
+                                            <td className={m.tipo === 'Ingreso' ? 'text-success' : 'text-danger'}>$ {parseFloat(m.monto).toFixed(2)}</td>
                                         </tr>
                                     ))}
                                 </tbody>
@@ -94,10 +94,10 @@ export default function Caja() {
                                     <td>{c.usuario?.nombre}</td>
                                     <td style={{ fontSize: 11 }}>{new Date(c.fecha_apertura).toLocaleString('es-PE')}</td>
                                     <td style={{ fontSize: 11 }}>{c.fecha_cierre ? new Date(c.fecha_cierre).toLocaleString('es-PE') : '—'}</td>
-                                    <td>S/ {parseFloat(c.monto_inicial).toFixed(2)}</td>
-                                    <td className="text-success">S/ {parseFloat(c.total_ventas || 0).toFixed(2)}</td>
-                                    <td className="text-danger">S/ {parseFloat(c.total_egresos || 0).toFixed(2)}</td>
-                                    <td><strong>S/ {parseFloat(c.monto_final || 0).toFixed(2)}</strong></td>
+                                    <td>$ {parseFloat(c.monto_inicial).toFixed(2)}</td>
+                                    <td className="text-success">$ {parseFloat(c.total_ventas || 0).toFixed(2)}</td>
+                                    <td className="text-danger">$ {parseFloat(c.total_egresos || 0).toFixed(2)}</td>
+                                    <td><strong>$ {parseFloat(c.monto_final || 0).toFixed(2)}</strong></td>
                                     <td><span className={`badge ${c.estado === 'Abierta' ? 'badge-success' : 'badge-purple'}`}>{c.estado}</span></td>
                                 </tr>
                             ))}
@@ -111,7 +111,7 @@ export default function Caja() {
                     <div className="modal" onClick={e => e.stopPropagation()}>
                         <div className="modal-header"><div className="modal-title">Abrir Caja</div><button className="modal-close" onClick={() => setModalAbrir(false)}><X /></button></div>
                         <div className="modal-body">
-                            <div className="form-group"><label>Monto Inicial (S/)</label><input type="number" className="form-control" placeholder="0.00" value={montoInicial} onChange={e => setMontoInicial(e.target.value)} /></div>
+                            <div className="form-group"><label>Monto Inicial ($)</label><input type="number" className="form-control" placeholder="0.00" value={montoInicial} onChange={e => setMontoInicial(e.target.value)} /></div>
                         </div>
                         <div className="modal-footer">
                             <button className="btn btn-secondary" onClick={() => setModalAbrir(false)}>Cancelar</button>
@@ -132,7 +132,7 @@ export default function Caja() {
                                 </select>
                             </div>
                             <div className="form-group"><label>Concepto</label><input className="form-control" value={movForm.concepto} onChange={e => setMovForm({ ...movForm, concepto: e.target.value })} placeholder="Ej: Pago a proveedor" /></div>
-                            <div className="form-group"><label>Monto (S/)</label><input type="number" className="form-control" value={movForm.monto} onChange={e => setMovForm({ ...movForm, monto: e.target.value })} /></div>
+                            <div className="form-group"><label>Monto ($)</label><input type="number" className="form-control" value={movForm.monto} onChange={e => setMovForm({ ...movForm, monto: e.target.value })} /></div>
                         </div>
                         <div className="modal-footer">
                             <button className="btn btn-secondary" onClick={() => setModalMov(false)}>Cancelar</button>

@@ -77,7 +77,7 @@ export default function Cotizaciones() {
                                     <td>{c.usuario?.nombre}</td>
                                     <td><span className={`badge ${estadoBadge[c.estado]}`}>{c.estado}</span></td>
                                     <td style={{ fontSize: 13, color: 'var(--text-secondary)' }}>{new Date(c.created_at).toLocaleString('es-PE')}</td>
-                                    <td><strong>S/ {parseFloat(c.total).toFixed(2)}</strong></td>
+                                    <td><strong>$ {parseFloat(c.total).toFixed(2)}</strong></td>
                                     <td style={{ display: 'flex', gap: 6 }}>
                                         <button className="btn-icon view" onClick={() => verDetalle(c.id)} title="Ver en detalle"><Eye size={14} /></button>
                                         {c.estado === 'Pendiente' && (
@@ -117,17 +117,17 @@ export default function Cotizaciones() {
                                             <tr key={d.id}>
                                                 <td>{d.producto?.nombre}</td>
                                                 <td>{d.cantidad} {d.producto?.unidad}</td>
-                                                <td>S/ {parseFloat(d.precio_unitario).toFixed(2)}</td>
-                                                <td><strong>S/ {parseFloat(d.subtotal).toFixed(2)}</strong></td>
+                                                <td>$ {parseFloat(d.precio_unitario).toFixed(2)}</td>
+                                                <td><strong>$ {parseFloat(d.subtotal).toFixed(2)}</strong></td>
                                             </tr>
                                         ))}
                                     </tbody>
                                 </table>
                             </div>
                             <div style={{ textAlign: 'right', marginTop: 12 }}>
-                                {parseFloat(detalle.descuento) > 0 && <div style={{ fontSize: 13, color: 'var(--danger-color)' }}>Descuento: - S/ {parseFloat(detalle.descuento).toFixed(2)}</div>}
-                                <div style={{ fontSize: 12, color: 'var(--text-secondary)' }}>IGV (18%): S/ {parseFloat(detalle.igv).toFixed(2)}</div>
-                                <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--accent-light)' }}>TOTAL PACTADO: S/ {parseFloat(detalle.total).toFixed(2)}</div>
+                                {parseFloat(detalle.descuento) > 0 && <div style={{ fontSize: 13, color: 'var(--danger-color)' }}>Descuento: - $ {parseFloat(detalle.descuento).toFixed(2)}</div>}
+                                <div style={{ fontSize: 12, color: 'var(--text-secondary)' }}>IGV (18%): $ {parseFloat(detalle.igv).toFixed(2)}</div>
+                                <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--accent-light)' }}>TOTAL PACTADO: $ {parseFloat(detalle.total).toFixed(2)}</div>
                             </div>
 
                             <div style={{ marginTop: 24, display: 'flex', justifyContent: 'space-between' }}>
