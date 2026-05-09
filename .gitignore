@@ -17,3 +17,11 @@ client/dist/
 # OS
 .DS_Store
 Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Uploads y cobertura
+server/uploads/
+coverage/
