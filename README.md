@@ -110,6 +110,14 @@ sistema-ferreteria/
         └── config/         # Conexion a base de datos
 ```
 
+## Capturas
+
+| | |
+|---|---|
+| ![Login](docs/screenshots/01-login.png) | ![Dashboard](docs/screenshots/02-dashboard.png) |
+| ![POS](docs/screenshots/03-pos.png) | ![Inventario](docs/screenshots/04-inventario.png) |
+| ![Caja](docs/screenshots/05-caja.png) | ![Reportes](docs/screenshots/06-reportes.png) |
+
 ## Licencia
 
 MIT
