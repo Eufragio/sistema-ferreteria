@@ -107,7 +107,7 @@ export default function Reportes() {
                         <PackageSearch size={20} /> Auditoría de Almacén
                     </div>
                     <p style={{ fontSize: 13, color: 'var(--text-muted)', marginBottom: 16 }}>
-                        A diferencia del reporte financiero, el recuento de mercadería no obedece a épocas pasadas sino al **Stock exacto del momento actual**. Calcula tu capital almacenado en Soles.
+                        A diferencia del reporte financiero, el recuento de mercadería no obedece a épocas pasadas sino al **Stock exacto del momento actual**. Calcula tu capital almacenado en dólares.
                     </p>
 
                     <div className="empty-state" style={{ padding: '24px 0', border: '1px dashed var(--border-color)', borderRadius: 8, marginBottom: 16 }}>
